@@ -16,7 +16,6 @@ Which Malaysian states recorded lower PeKaB40 screening intensity, and where sho
 - CSV datasets
 - GitHub
 
-## Dataset Sources
 
 ## Dataset Sources
 
