@@ -8,9 +8,17 @@ Preventive screening is important because NCDs such as diabetes, hypertension, a
 
 This project analyzes PeKaB40 health screening records across all Malaysian states and federal territories from 2019 to 2025. It compares yearly trends, state-level screening activity, and population-adjusted screening intensity using the population aged 40 and above as an approximation. The goal is to highlight states with lower screening intensity and support more evidence-based outreach planning.
 
-## Business / Public Health Question
+## Business / Public Health Questions
 
-Which Malaysian states recorded lower PeKaB40 screening intensity, and where should outreach campaigns be reviewed or prioritized?
+This project focuses on three main questions:
+
+1. How did PeKaB40 health screening activity change across Malaysia from 2019 to 2025?
+
+2. Which Malaysian states and federal territories recorded the highest and lowest PeKaB40 screening activity?
+
+3. After adjusting for population aged 40+, which states show lower screening intensity and may require further outreach review?
+
+These questions help move the analysis beyond raw screening totals by considering both time trends and population-adjusted screening intensity.
 
 ## Tools Used
 
@@ -31,9 +39,10 @@ The PeKaB40 screening dataset was combined with Malaysia state-level population 
 
 Formula:
 
-```text
-Screening Intensity = Total Screenings / Population Aged 40+ * 100,000
-```
+<p align="center">
+  <strong>Screening Intensity</strong> = 
+  (Total Screenings / Population Aged 40+) × 100,000
+</p>
 
 ## Dashboard Preview
 
