@@ -18,9 +18,11 @@ Which Malaysian states recorded lower PeKaB40 screening intensity, and where sho
 
 ## Dataset Sources
 
-- Daily PeKaB40 Health Screenings by State from Malaysia Ministry of Health / data.moh.gov.my
-- Population Table by State from data.gov.my / OpenDOSM
-- Cleaned population aged 40+ by state and year, created from the population dataset
+## Dataset Sources
+
+- [Daily PeKaB40 Health Screenings by State](https://data.gov.my/data-catalogue/pekab40_screenings_state)
+- [Population Table by State](https://data.gov.my/data-catalogue/population_state)
+- [Cleaned population aged 40+ by state and year](data/cleaned/population_40plus_by_state_year.csv), created from the population dataset
 
 ## Methodology
 
