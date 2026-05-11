@@ -1,0 +1,26 @@
+# OS files
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Temporary files
+*.tmp
+*.temp
+*.bak
+*.swp
+*.swo
+~$*
+
+# Power BI cache/temp files
+*.pbitmp
+*.pbix.tmp
+*.AnalysisServicesWorkspace
+AnalysisServicesWorkspace*
+PowerBICache/
+*.cache
+
+# Excel temporary files
+~$*.xlsx
+~$*.xls
+~$*.xlsm
+
