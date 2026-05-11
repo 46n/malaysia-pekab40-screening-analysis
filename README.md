@@ -2,7 +2,11 @@
 
 ## Project Overview
 
-This project analyzes Malaysia's PeKaB40 preventive healthcare screening activity by state from 2019 to 2025. The goal is to identify screening trends, compare state-level activity, and highlight outreach-priority areas using population-adjusted screening intensity.
+PeKaB40, or Skim Peduli Kesihatan untuk Kumpulan B40, is a Malaysian Ministry of Health initiative designed to support the healthcare needs of low-income Malaysians, especially in relation to non-communicable diseases (NCDs). The programme provides free health screening and related healthcare support to eligible Sumbangan Tunai Rahmah (STR) recipients and their registered spouses aged 40 and above. :contentReference[oaicite:0]{index=0}
+
+Preventive screening is important because NCDs such as diabetes, hypertension, and cardiovascular-related risks can remain undetected until they become more serious. Analyzing PeKaB40 screening activity helps identify how screening participation changes over time and whether some states may require closer outreach review.
+
+This project analyzes PeKaB40 health screening records across all Malaysian states and federal territories from 2019 to 2025. It compares yearly trends, state-level screening activity, and population-adjusted screening intensity using the population aged 40 and above as an approximation. The goal is to highlight states with lower screening intensity and support more evidence-based outreach planning.
 
 ## Business / Public Health Question
 
