@@ -4,7 +4,6 @@
 
 ![Power BI](https://img.shields.io/badge/Power%20BI-Desktop-F2C811?logo=powerbi&logoColor=black)
 ![DAX](https://img.shields.io/badge/DAX-Measures-0078D4)
-![License](https://img.shields.io/badge/License-MIT-green)
 
 ---
 
