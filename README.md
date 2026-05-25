@@ -1,67 +1,80 @@
 # PeKaB40 Preventive Healthcare Screening Analysis
 
-## Project Overview
+> Power BI analysis of Malaysia's B40 free health screening programme — tracking state-level trends, coverage intensity, and outreach gaps from 2019 to 2025.
 
-PeKaB40, or Skim Peduli Kesihatan untuk Kumpulan B40, is a Malaysian Ministry of Health initiative designed to support the healthcare needs of low-income Malaysians, especially in relation to non-communicable diseases (NCDs). The programme provides free health screening and related healthcare support to eligible Sumbangan Tunai Rahmah (STR) recipients and their registered spouses aged 40 and above. 
+![Power BI](https://img.shields.io/badge/Power%20BI-Desktop-F2C811?logo=powerbi&logoColor=black)
+![DAX](https://img.shields.io/badge/DAX-Measures-0078D4)
+![License](https://img.shields.io/badge/License-MIT-green)
 
-Preventive screening is important because NCDs such as diabetes, hypertension, and cardiovascular-related risks can remain undetected until they become more serious. Analyzing PeKaB40 screening activity helps identify how screening participation changes over time and whether some states may require closer outreach review.
+---
 
-This project analyzes PeKaB40 health screening records across all Malaysian states and federal territories from 2019 to 2025. It compares yearly trends, state-level screening activity, and population-adjusted screening intensity using the population aged 40 and above as an approximation. The goal is to highlight states with lower screening intensity and support more evidence-based outreach planning.
+## Background
 
-## Business / Public Health Questions
+**PeKaB40** (Skim Peduli Kesihatan untuk Kumpulan B40) is a Malaysian Ministry of Health programme that provides free health screening to eligible Sumbangan Tunai Rahmah (STR) recipients and their registered spouses aged 40 and above. It targets non-communicable diseases (NCDs) — diabetes, hypertension, cardiovascular risks — that often go undetected until they become serious.
 
-This project focuses on three main questions:
+This project analyses PeKaB40 screening records across all Malaysian states and federal territories from 2019 to 2025. It compares yearly trends, state-level volume, and population-adjusted screening intensity to surface states that may need closer outreach review.
 
-1. How did PeKaB40 health screening activity change across Malaysia from 2019 to 2025?
+---
 
-2. Which Malaysian states and federal territories recorded the highest and lowest PeKaB40 screening activity?
+## Research Questions
 
-3. After adjusting for population aged 40+, which states show lower screening intensity and may require further outreach review?
+1. How did PeKaB40 screening activity change across Malaysia from 2019 to 2025?
+2. Which states recorded the highest and lowest total screening volume?
+3. After adjusting for population aged 40+, which states show lower screening intensity and may warrant further outreach investigation?
 
-These questions help move the analysis beyond raw screening totals by considering both time trends and population-adjusted screening intensity.
+---
 
-## Tools Used
+## Tools
 
-- Power BI
-- Power Query
-- DAX
-- CSV datasets
-- GitHub
+| Tool | Purpose |
+|---|---|
+| Power BI Desktop | Dashboard development and visualisation |
+| Power Query | Data cleaning and transformation |
+| DAX | Calculated measures and KPIs |
+| CSV datasets | Source data (screenings + population) |
 
-## Data Resources
-- [Daily PeKaB40 Health Screenings by State](https://data.gov.my/data-catalogue/pekab40_screenings_state)
-- [Population Table by State](https://data.gov.my/data-catalogue/population_state)
-- [Cleaned population aged 40+ by state and year](data/cleaned/population_40plus_by_state_year.csv), created from the population dataset
+---
+
+## Data Sources
+
+- [Daily PeKaB40 Health Screenings by State](https://data.gov.my/data-catalogue/pekab40_screenings_state) — data.gov.my
+- [Population Table by State](https://data.gov.my/data-catalogue/population_state) — data.gov.my
+- [`data/cleaned/population_40plus_by_state_year.csv`](data/cleaned/population_40plus_by_state_year.csv) — derived from the population dataset, filtered to age groups 40+
+
+---
 
 ## Methodology
 
-The PeKaB40 screening dataset was combined with Malaysia state-level population data. Since PeKaB40 targets eligible individuals aged 40 and above, the population dataset was filtered to include age groups from 40-44 up to the oldest available age group. The filtered population data was grouped by state and year, then used to calculate screening intensity.
+The PeKaB40 screening dataset was joined with state-level population data filtered to age groups 40–44 and above, then aggregated by state and year to produce an eligible-population denominator.
 
-Formula:
+**Screening intensity** is calculated as:
 
-<p align="center">
-  <strong>Screening Intensity</strong> = 
-  (Total Screenings / Population Aged 40+) × 100,000
-</p>
+$$\text{Screening Intensity} = \frac{\text{Total Screenings}}{\text{Population Aged 40+}} \times 100{,}000$$
+
+This normalises screening volume against the approximate eligible population, allowing fairer cross-state comparison than raw totals alone.
+
+> Full methodology: [`docs/methodology.md`](docs/methodology.md) — Data definitions: [`docs/data_dictionary.md`](docs/data_dictionary.md)
+
+---
 
 ## Dashboard Preview
 
-The dashboard preview is grouped into two sections:
+The dashboard is split into two sections:
 
-- **Overview**: overall screening activity, time trends, state totals, and geographic distribution.
-- **Outreach Priority**: population-adjusted screening intensity and evidence for reviewing lower-intensity states.
+- **Overview** — screening trends, state totals, and geographic distribution
+- **Outreach Priority** — population-adjusted intensity and evidence for lower-intensity states
 
 ### Overview
 
-#### PeKaB40 Screenings Trend Over Time
+#### Screenings Trend Over Time
 
 <p align="center">
   <img src="screenshots/screenings-trend-over-time.png" alt="PeKaB40 screenings trend over time" width="850">
 </p>
 
-This chart shows annual PeKaB40 screening records from 2019 to 2025. Screening activity dropped sharply in 2021, then recovered strongly from 2022 onward.
+Annual screening records dropped sharply in 2021, recovered strongly through 2022–2023, then saw a mild decline in 2024–2025. The 2021 trough and 2023 peak are the two most notable inflection points in the series.
 
-2021 was the weakest year in the period, while 2023 marked the strongest recovery point before a mild decline in 2024 and 2025.
+---
 
 #### Top and Bottom 5 States by Total Screenings
 
@@ -69,9 +82,9 @@ This chart shows annual PeKaB40 screening records from 2019 to 2025. Screening a
   <img src="screenshots/top-and-bottom-5-states-by-total-screenings.png" alt="Top and bottom 5 states by total screenings" width="850">
 </p>
 
-This view compares the highest and lowest states by total PeKaB40 screening records. Perak, Kedah, Sarawak, Selangor, and Johor appear among the strongest states by total volume, while W.P. Putrajaya and W.P. Labuan record the lowest totals.
+Perak, Kedah, Sarawak, Selangor, and Johor lead by total volume. W.P. Putrajaya and W.P. Labuan sit at the bottom. Raw totals reflect population size — they should be read alongside screening intensity before drawing outreach conclusions.
 
-Total screening volume is useful for understanding operational scale, but it should be read together with population-adjusted screening intensity before judging outreach performance.
+---
 
 #### Total Screenings by State
 
@@ -79,111 +92,119 @@ Total screening volume is useful for understanding operational scale, but it sho
   <img src="screenshots/total-screenings-by-state.png" alt="Total screenings by state" width="850">
 </p>
 
-This dashboard view combines KPI cards with a ranked state bar chart. It shows total screening records, active screening days, average daily screenings, and how screening volume is distributed across states.
+KPI cards show total screening records, active screening days, and average daily screenings alongside a ranked state bar chart. Larger states naturally dominate raw counts.
 
-Larger states generally contribute more screening records, so raw totals alone do not fully explain relative outreach strength.
+---
 
-#### Monthly PeKaB40 Screenings Trend and State Screening Intensity
+#### Monthly Screenings Trend and State Screening Intensity
 
 <p align="center">
   <img src="screenshots/monthly-screenings-trend-and-screenings-rate-by-state.png" alt="Monthly screenings trend and screening intensity by state" width="850">
 </p>
 
-The monthly trend shows seasonal movement in screening records, with weaker activity around April and May and stronger activity later in the year. The state comparison below highlights clear variation in screening intensity between states.
+Monthly patterns show weaker activity around April–May and stronger activity later in the year. State-level intensity variation is visible even within the same raw-volume tier.
 
-Screening activity is not evenly distributed across the year or across states, which supports the need for targeted outreach monitoring.
+---
 
-#### PeKaB40 Screening Intensity by State Map
+#### Screening Intensity by State — Map
 
 <p align="center">
   <img src="screenshots/screenings-rate-by-state-map.png" alt="PeKaB40 screening intensity by state map" width="850">
 </p>
 
-The map provides a geographic view of state-level screening intensity. It helps identify where screening activity is concentrated and where intensity appears lower across Malaysia.
+Geographic view of population-adjusted intensity. East Malaysian states and several northern peninsular states show relatively higher intensity; federal territories cluster at the lower end.
 
-Geographic variation is visible, so outreach planning should consider both state ranking and location-based access patterns.
+---
 
 ### Outreach Priority
 
-This section focuses on population-adjusted screening intensity and evidence for reviewing lower-intensity states. Screening intensity is used because the denominator is population aged 40+, not the exact eligible PeKaB40 population.
+> Screening intensity uses population aged 40+ as a proxy denominator, not the exact eligible B40/STR count by state.
 
-#### Screening Intensity by State Per 100,000 Population Aged 40+
+#### Screening Intensity per 100,000 Population Aged 40+
 
 <p align="center">
   <img src="screenshots/screenings-intensity-by-state-per-100000-population-aged-40%2B.png" alt="Screening intensity by state per 100,000 population aged 40+" width="850">
 </p>
 
-This chart ranks states by screening intensity per 100,000 population aged 40+. Kelantan records the highest screening intensity, while W.P. Putrajaya, W.P. Kuala Lumpur, and W.P. Labuan appear at the lower end.
+Kelantan ranks highest in screening intensity. W.P. Putrajaya, W.P. Kuala Lumpur, and W.P. Labuan sit noticeably below the national trend, flagging them as priority areas for outreach review.
 
-W.P. Putrajaya, W.P. Kuala Lumpur, and W.P. Labuan should be reviewed as priority areas because their screening intensity is noticeably lower than most other states.
+---
 
-#### Outreach Priority Evidence
+#### Outreach Priority Evidence Table
 
 <p align="center">
   <img src="screenshots/outreach-priority-evidence.png" alt="Outreach priority evidence" width="850">
 </p>
 
-This evidence table compares screening intensity, average daily screenings, population aged 40+, and total screening records by state. It supports the outreach-priority view by showing both raw activity and population-adjusted intensity in one place.
+Side-by-side comparison of screening intensity, average daily screenings, population aged 40+, and total records by state. Low intensity in the three federal territories may reflect awareness gaps, access barriers, eligible-population differences, or cross-border healthcare usage into neighbouring Selangor — further investigation is needed before drawing conclusions.
 
-Low screening intensity in W.P. Putrajaya, W.P. Kuala Lumpur, and W.P. Labuan may reflect awareness gaps, access patterns, eligible-population differences, or cross-state healthcare usage, so these states need further investigation rather than a simple raw-count comparison.
+> Additional screenshot notes: [`screenshots/README.md`](screenshots/README.md)
 
-More screenshot notes are available in [screenshots/README.md](screenshots/README.md).
+---
 
 ## Key Insights
 
-1. PeKaB40 screenings dropped sharply in 2021, making it the weakest year in the 2019-2025 trend.
-2. Screenings recovered strongly after 2021 and reached their highest point in 2023, before slightly declining in 2024 and 2025.
-3. Kelantan recorded the highest screening intensity per 100,000 population aged 40+ in the selected year.
-4. W.P. Putrajaya recorded the lowest screening intensity per 100,000 population aged 40+.
-5. W.P. Putrajaya, W.P. Kuala Lumpur, and W.P. Labuan showed noticeably lower screening intensity compared with other states, making them priority areas for further outreach review.
+1. Screening activity collapsed in 2021 — the weakest year in the 2019–2025 window — before recovering to a 2023 peak.
+2. Post-peak decline continued into 2024–2025, warranting monitoring to determine whether a new outreach push is needed.
+3. Kelantan recorded the highest screening intensity per 100,000 population aged 40+.
+4. W.P. Putrajaya recorded the lowest screening intensity of any state or federal territory.
+5. W.P. Putrajaya, W.P. Kuala Lumpur, and W.P. Labuan all fall significantly below the median intensity — the strongest evidence for outreach prioritisation.
+
+---
 
 ## Recommendations
 
-- Review W.P. Putrajaya, W.P. Kuala Lumpur, and W.P. Labuan as priority areas for further outreach investigation.
-- Investigate whether low screening intensity is linked to awareness gaps, clinic accessibility, eligible-population differences, or cross-state healthcare usage.
-- Use Kelantan as a reference case to understand what may be supporting stronger screening intensity.
-- Monitor the slight decline after the 2023 peak to determine whether additional outreach campaigns are needed.
+- **Investigate the three federal territories** (W.P. Putrajaya, W.P. Kuala Lumpur, W.P. Labuan) for awareness gaps, clinic access barriers, or cross-state healthcare usage before assuming low uptake.
+- **Use Kelantan as a reference case** — understand what is driving its above-average intensity and assess whether those conditions can be replicated elsewhere.
+- **Monitor the post-2023 decline** — a continued downward trend would justify a targeted national outreach campaign.
+- **Refine the denominator** — if eligible B40/STR population counts by state become available, replace the 40+ population proxy for more accurate intensity measurement.
+
+---
 
 ## Limitations
 
-- Screening intensity uses population aged 40+ as an approximation.
-- The metric does not represent exact PeKaB40 eligibility or exact coverage because the dataset does not include the eligible B40/STR population by state.
-- The screening dataset represents screening records, not necessarily unique individuals.
-- Urban areas such as Kuala Lumpur may have cross-state healthcare usage, especially with nearby Selangor.
+- Screening intensity uses **population aged 40+** as a proxy — not the exact eligible B40/STR population by state, which is not publicly available at this level of granularity.
+- The dataset counts **screening records**, not unique individuals — repeat screenings are included.
+- **Urban federal territories** (especially W.P. Kuala Lumpur) may undercount due to residents accessing clinics in adjacent Selangor.
+
+> Full limitations discussion: [`docs/limitations.md`](docs/limitations.md)
+
+---
 
 ## Repository Structure
 
-```text
-daily PekaB40 Health Screaning By State
-|-- dashboard
-|   `-- PeKaB40_Healthcare_Screening_Dashboard.pbix
-|-- data
-|   |-- raw
-|   |   |-- pekab40_screenings_state.csv
-|   |   `-- population_state.csv
-|   `-- cleaned
-|       `-- population_40plus_by_state_year.csv
-|-- screenshots
-|   |-- README.md
-|   |-- monthly-screenings-trend-and-screenings-rate-by-state.png
-|   |-- outreach-priority-evidence.png
-|   |-- screenings-intensity-by-state-per-100000-population-aged-40+.png
-|   |-- screenings-rate-by-state-map.png
-|   |-- screenings-trend-over-time.png
-|   |-- top-and-bottom-5-states-by-total-screenings.png
-|   `-- total-screenings-by-state.png
-|-- docs
-|   |-- methodology.md
-|   |-- data_dictionary.md
-|   `-- limitations.md
-|-- measures.md
-|-- README.md
-`-- .gitignore
 ```
+malaysia-pekab40-screening-analysis/
+├── dashboard/
+│   └── PeKaB40_Healthcare_Screening_Dashboard.pbix
+├── data/
+│   ├── raw/
+│   │   ├── pekab40_screenings_state.csv
+│   │   └── population_state.csv
+│   └── cleaned/
+│       └── population_40plus_by_state_year.csv
+├── screenshots/
+│   ├── README.md
+│   ├── screenings-trend-over-time.png
+│   ├── top-and-bottom-5-states-by-total-screenings.png
+│   ├── total-screenings-by-state.png
+│   ├── monthly-screenings-trend-and-screenings-rate-by-state.png
+│   ├── screenings-rate-by-state-map.png
+│   ├── screenings-intensity-by-state-per-100000-population-aged-40+.png
+│   └── outreach-priority-evidence.png
+├── docs/
+│   ├── methodology.md
+│   ├── data_dictionary.md
+│   └── limitations.md
+├── measures.md
+├── README.md
+└── .gitignore
+```
+
+---
 
 ## How to Open the Dashboard
 
-1. Install Power BI Desktop.
+1. Install [Power BI Desktop](https://powerbi.microsoft.com/desktop/).
 2. Open `dashboard/PeKaB40_Healthcare_Screening_Dashboard.pbix`.
-3. If Power BI asks about file paths or data refresh, confirm that the CSV files are available in the `data` folder.
-
+3. If prompted about data source paths, confirm the CSV files are present in the `data/` folder.
