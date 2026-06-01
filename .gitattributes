@@ -1,0 +1,4 @@
+*.dax linguist-language=DAX linguist-detectable=true
+*.pbix linguist-generated=true
+data/**/*.csv linguist-documentation=true
+screenshots/** linguist-documentation=true
